@@ -7,4 +7,6 @@ chmod u+x nvim.appimage
 
 cp nvim.appimage $HOME/.local/bin/nvim
 
+# TODO -- auto install plugins
+
 echo "Installed neovim!"
