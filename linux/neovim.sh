@@ -1,12 +1,16 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
-echo "Downloading latest version of neovim"
+if [ -x "$(command -v nvim)" ]; then
+  echo "Neovim already installed. Skipping!"
+else
+  echo "Downloading latest version of Neovim"
 
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
 
-cp nvim.appimage $HOME/.local/bin/nvim
+  cp nvim.appimage $HOME/.local/bin/nvim
 
-# TODO -- auto install plugins
+  nvim +PlugUpgrade +PlugUpdate +PlugInstall +qa
 
-echo "Installed neovim!"
+  echo "Installed neovim!"
+fi

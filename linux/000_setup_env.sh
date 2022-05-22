@@ -1,13 +1,22 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
-echo "Setting up me directory"
+echo "Setting up directories"
 
-mkdir $HOME/me
+if [ ! -d "$HOME/me" ]; then
+  mkdir "$HOME/me"
+fi
 
-echo "Setting up code directory"
+codeDirs=("go" "misc" "python" "ruby")
 
-mkdir $HOME/code
+for codeDir in ${codeDirs[@]}; do
+  if [ ! -d "$HOME/code/$codeDir" ]; then
+    mkdir -p "$HOME/code/$codeDir"
+  fi
+done
 
-echo "Setting up $HOME/.local/bin"
+if [ ! -d "$HOME/.local/bin" ]; then
+  echo "Setting up $HOME/.local/bin"
+  mkdir -p $HOME/.local/bin
+fi
 
-mkdir -p $HOME/.local/bin
+echo "Done setting up env!"
